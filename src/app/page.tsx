@@ -1,65 +1,145 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { SpiralAnimation } from "@/components/ui/spiral-animation"
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+
+export default function LandingPage() {
+  const [startVisible, setStartVisible] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const router = useRouter()
+  
+  // Fade in the Enter button after animation loads
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStartVisible(true)
+    }, 2000)
+    
+    return () => clearTimeout(timer)
+  }, [])
+  
+  const handleEnter = () => {
+    setIsTransitioning(true)
+    // Brief transition effect before navigating
+    setTimeout(() => {
+      router.push('/home')
+    }, 800)
+  }
+  
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="fixed inset-0 w-full h-full overflow-hidden" style={{ background: '#120E1C' }}>
+      {/* Spiral Animation Background */}
+      <div className="absolute inset-0">
+        <SpiralAnimation />
+      </div>
+      
+      {/* Subtle gradient overlay for depth */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(18, 14, 28, 0.4) 100%)',
+        }}
+      />
+
+      {/* Content Overlay */}
+      <div 
+        className={`
+          absolute inset-0 z-10 flex flex-col items-center justify-center
+          transition-all duration-1000 ease-out
+          ${isTransitioning ? 'opacity-0 scale-110' : 'opacity-100 scale-100'}
+        `}
+      >
+        {/* Title - appears first */}
+        <div 
+          className={`
+            text-center mb-16 transition-all duration-1000 ease-out
+            ${startVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}
+          `}
+        >
+          <h1 
+            className="text-5xl md:text-7xl font-bold mb-3 tracking-wider"
+            style={{ 
+              fontFamily: 'var(--font-fredoka)',
+              color: '#FF6B9D',
+              textShadow: `
+                0 0 10px rgba(255, 107, 157, 0.8),
+                0 0 20px rgba(255, 107, 157, 0.5),
+                0 0 40px rgba(255, 107, 157, 0.3),
+                0 0 80px rgba(255, 107, 157, 0.15)
+              `,
+            }}
+          >
+            PETVERSE
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p 
+            className="text-sm md:text-base tracking-[0.3em] uppercase"
+            style={{ 
+              fontFamily: 'var(--font-nunito)',
+              color: 'rgba(232, 180, 247, 0.6)',
+              textShadow: '0 0 10px rgba(232, 180, 247, 0.3)',
+            }}
+          >
+            Your Digital Companion Awaits
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Enter Button */}
+        <div 
+          className={`
+            transition-all duration-[1500ms] ease-out
+            ${startVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+          `}
+          style={{ transitionDelay: '500ms' }}
+        >
+          <button 
+            onClick={handleEnter}
+            className="
+              relative group cursor-pointer
+              text-white text-xl md:text-2xl tracking-[0.25em] uppercase font-extralight
+              px-10 py-4
+              transition-all duration-700
+              hover:tracking-[0.4em]
+            "
+            style={{
+              fontFamily: 'var(--font-fredoka)',
+              color: '#E8B4F7',
+              textShadow: '0 0 15px rgba(232, 180, 247, 0.5)',
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            {/* Button glow border */}
+            <span 
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255, 107, 157, 0.3)',
+                boxShadow: '0 0 20px rgba(255, 107, 157, 0.15), inset 0 0 20px rgba(255, 107, 157, 0.05)',
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            
+            {/* Pulsing dot */}
+            <span className="inline-block w-2 h-2 rounded-full mr-4 animate-pulse" 
+              style={{ background: '#FF6B9D', boxShadow: '0 0 8px rgba(255, 107, 157, 0.8)' }} 
+            />
+            Enter
+            <span className="inline-block w-2 h-2 rounded-full ml-4 animate-pulse" 
+              style={{ background: '#4FACFE', boxShadow: '0 0 8px rgba(79, 172, 254, 0.8)' }} 
+            />
+          </button>
         </div>
-      </main>
+        
+        {/* Subtle paw print decorations */}
+        <div 
+          className={`
+            absolute bottom-8 text-center transition-all duration-1000 ease-out
+            ${startVisible ? 'opacity-30' : 'opacity-0'}
+          `}
+          style={{ transitionDelay: '1200ms' }}
+        >
+          <span className="text-2xl tracking-[1em]" style={{ filter: 'blur(0.5px)' }}>
+            🐾 🐾 🐾
+          </span>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
