@@ -2,6 +2,18 @@
 
 Virtual Pet is a browser-based pet game built with Next.js and TypeScript. You can care for your pet, play with it, customize it, collect rewards, and track progress through a simple interactive interface.
 
+## Visual Preview
+
+### Pet Characters
+
+| Cat | Bunny | Fox |
+| --- | --- | --- |
+| ![Cat Pet](public/pets/cat.png) | ![Bunny Pet](public/pets/bunny.png) | ![Fox Pet](public/pets/fox.png) |
+
+| Dragon | Ghost |
+| --- | --- |
+| ![Dragon Pet](public/pets/dragon.png) | ![Ghost Pet](public/pets/ghost.png) |
+
 ## Features
 
 - Home dashboard for core pet status
