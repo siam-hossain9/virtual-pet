@@ -14,6 +14,24 @@ Virtual Pet is a browser-based pet game built with Next.js and TypeScript. You c
 | --- | --- |
 | ![Dragon Pet](public/pets/dragon.png) | ![Ghost Pet](public/pets/ghost.png) |
 
+### Gameplay Screenshots
+
+| Screenshot 1 | Screenshot 2 | Screenshot 3 |
+| --- | --- | --- |
+| ![Gameplay Screenshot 1](Screenshot%202026-04-17%20023625.png) | ![Gameplay Screenshot 2](Screenshot%202026-04-17%20023645.png) | ![Gameplay Screenshot 3](Screenshot%202026-04-17%20023716.png) |
+
+| Screenshot 4 | Screenshot 5 | Screenshot 6 |
+| --- | --- | --- |
+| ![Gameplay Screenshot 4](Screenshot%202026-04-17%20023727.png) | ![Gameplay Screenshot 5](Screenshot%202026-04-17%20023738.png) | ![Gameplay Screenshot 6](Screenshot%202026-04-17%20023749.png) |
+
+| Screenshot 7 | Screenshot 8 | Screenshot 9 |
+| --- | --- | --- |
+| ![Gameplay Screenshot 7](Screenshot%202026-04-17%20023800.png) | ![Gameplay Screenshot 8](Screenshot%202026-04-17%20023809.png) | ![Gameplay Screenshot 9](Screenshot%202026-04-17%20023815.png) |
+
+| Screenshot 10 | Screenshot 11 |
+| --- | --- |
+| ![Gameplay Screenshot 10](Screenshot%202026-04-17%20023823.png) | ![Gameplay Screenshot 11](Screenshot%202026-04-17%20023828.png) |
+
 ## Features
 
 - Home dashboard for core pet status
